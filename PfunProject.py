@@ -1,46 +1,4 @@
 import datetime as dt
-def payment(numberOfRooms, duration, room, breakfast_included, swimming_gym_inlcuded):      #calculating total bill using parameters depending on duration of stay, type of room, number of rooms, breakfast, swimming pool and gym
-    singleRoom_perNight = 200.0         #Initialising fixed prices of rooms and facilities, prices in USD
-    doubleRoom_perNight = 300.0
-    familyRoom_perNight = 450.0
-    suiteRoom_perNight = 600.0
-    breakfast_charge = 100.0
-    swimmingPool_Gym_charge = 75.0
-    totalBill=0
-    if room=="single":
-        totalBill+= singleRoom_perNight*duration*numberOfRooms
-    elif room=="double":
-        totalBill+= doubleRoom_perNight*duration*numberOfRooms
-    elif room=="family":
-        totalBill+= familyRoom_perNight*duration*numberOfRooms
-    elif room=="suite":
-        totalBill+= suiteRoom_perNight*duration*numberOfRooms
-
-    if room!="suite":                #Breakfast, swmming pool and gym facility included for type of room suite.
-        if breakfast_included==True:
-            totalBill+=breakfast_charge
-        if swimming_gym_included==True:
-            totalBill+=swimmingPool_Gym_charge
-    return totalBill
-
-def seasonal_discount(arrivalMonth):      #Seasonal discount applicable for winters(Dec, Jan) and summer(June, July). Depends on month of arrival
-    winter_discount = 15.0                #15% discount for winter
-    summer_discount = 25.0                #25% discount for summer
-    if arrivalMonth==6 or arrivalMonth==7:
-        return summer_discount
-    elif arrivalMonth==12 or arrivalMonth==1:
-        return winter_discount
-    else:
-        return 0 
-def package_discount(adults , children):      #Family and couple package applicable
-    familyPackage_discount = 20.0             #20% discount for Family package 
-    couplePackage_discount = 15.0             #15% discount for Couple package
-    if adults>1 and children>2:             #applicable on families of more than 1 adult and more than 2 children
-        return familyPackage_discount
-    elif adults==2 and children==0:
-        return couplePackage_discount
-    else:
-        return 0
 
 def input_name():                          #Customer Name input
     print("Welcome to Hotel Trivago! Please answer the following questions to complete your hotel reservation. Thank you!")
@@ -235,7 +193,52 @@ def swimming_gym():                                                         #Use
     if choice=="y":
         return True
     else:
-        return False 
+        return False
+
+def payment(numberOfRooms, duration, room, breakfast_included, swimming_gym_inlcuded):      #calculating total bill using parameters depending on duration of stay, type of room, number of rooms, breakfast, swimming pool and gym
+    singleRoom_perNight = 200.0         #Initialising fixed prices of rooms and facilities, prices in USD
+    doubleRoom_perNight = 300.0
+    familyRoom_perNight = 450.0
+    suiteRoom_perNight = 600.0
+    breakfast_charge = 100.0
+    swimmingPool_Gym_charge = 75.0
+    totalBill=0
+    if room=="single":
+        totalBill+= singleRoom_perNight*duration*numberOfRooms
+    elif room=="double":
+        totalBill+= doubleRoom_perNight*duration*numberOfRooms
+    elif room=="family":
+        totalBill+= familyRoom_perNight*duration*numberOfRooms
+    elif room=="suite":
+        totalBill+= suiteRoom_perNight*duration*numberOfRooms
+
+    if room!="suite":                #Breakfast, swmming pool and gym facility included for type of room suite.
+        if breakfast_included==True:
+            totalBill+=breakfast_charge
+        if swimming_gym_included==True:
+            totalBill+=swimmingPool_Gym_charge
+    return totalBill
+    
+
+def seasonal_discount(arrivalMonth):      #Seasonal discount applicable for winters(Dec, Jan) and summer(June, July). Depends on month of arrival
+    winter_discount = 15.0                #15% discount for winter
+    summer_discount = 25.0                #25% discount for summer
+    if arrivalMonth==6 or arrivalMonth==7:
+        return summer_discount
+    elif arrivalMonth==12 or arrivalMonth==1:
+        return winter_discount
+    else:
+        return 0 
+def package_discount(adults , children):      #Family and couple package applicable
+    familyPackage_discount = 20.0             #20% discount for Family package 
+    couplePackage_discount = 15.0             #15% discount for Couple package
+    if adults>1 and children>2:             #applicable on families of more than 1 adult and more than 2 children
+        return familyPackage_discount
+    elif adults==2 and children==0:
+        return couplePackage_discount
+    else:
+        return 0
+
 
 name=input_name()
 adults=input_numberOfAdults()
